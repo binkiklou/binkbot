@@ -1,0 +1,5 @@
+Data/*.csv
+__pycache__
+*.zip
+output.txt
+data.txt
