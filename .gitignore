@@ -3,3 +3,5 @@ __pycache__
 *.zip
 output.txt
 data.txt
+training_checkpoints/*
+one_step/*

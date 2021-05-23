@@ -47,7 +47,7 @@ dataset = sequences.map(split_input_target)
 #    print("Input :", text_from_ids(input_example).numpy())
 #    print("Target:", text_from_ids(target_example).numpy())
 
-BATCH_SIZE = 1000
+BATCH_SIZE = 64
 BUFFER_SIZE = 10000
 dataset = (
     dataset
@@ -190,3 +190,18 @@ print('\nRun time:', end - start)
 
 # Exporting
 tf.saved_model.save(one_step_model, 'one_step')
+
+'''
+one_step_reloaded = tf.saved_model.load('one_step')
+
+states = None
+next_char = tf.constant(['C++'])
+result = [next_char]
+
+for n in range(2056):
+  next_char, states = one_step_reloaded.generate_one_step(next_char, states=states)
+  result.append(next_char)
+
+print('-----==========-----')
+print(tf.strings.join(result)[0].numpy().decode("utf-8"))
+'''
